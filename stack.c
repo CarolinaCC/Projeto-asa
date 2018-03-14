@@ -3,7 +3,6 @@
 #include "stack.h"
 
 
-
 node init (int c) {
 	node head = malloc (sizeof(struct stacknode));
 	head->content = c;
@@ -26,7 +25,7 @@ void push (node *head, int c) {
 int pop (node *head) {
 	if (isEmpty(head)) {
 		fprintf(stderr, "Pop num stack vazio\n");
-		exit (-1);
+		exit (EXIT_FAILURE);
 	}
 	node aux = *head;
 	int value = aux->content;
@@ -35,12 +34,25 @@ int pop (node *head) {
 	return value;
 }
 
-void printStack(node head) {
-	node aux = head;
+void printStack(node *head) {
+	node aux = *head;
 	while (aux != NULL) {
 		printf("%d\n", aux->content);
 		aux = aux->next;
 	}
+	printf("\n");
 }
 
-int main() {return 0;}
+int main(){
+	node head = init(5);
+	push(&head, 3);
+	printStack(&head);
+	push(&head, 9);
+	printStack(&head);
+	pop(&head);
+	printStack(&head);
+	printf("pop return:%d\n", pop(&head));
+	printStack(&head);
+	pop(&head);
+	pop(&head);
+}

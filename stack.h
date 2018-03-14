@@ -15,6 +15,6 @@ void push(node *head, int c);
 
 int pop(node *head);
 
-void printStack(node head);
+void printStack(node *head);
 
 #endif
