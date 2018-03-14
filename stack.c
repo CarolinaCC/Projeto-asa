@@ -3,6 +3,7 @@
 #include "stack.h"
 
 
+
 node init (int c) {
 	node head = malloc (sizeof(struct stacknode));
 	head->content = c;
@@ -10,11 +11,19 @@ node init (int c) {
 	return head;
 }
 
+/****************************
+Returns true if stack has   *
+no elements on it and false *
+otherwise                   *
+****************************/
 int isEmpty (node *head) {
 	return (*head == NULL) ? 1 : 0;
 }
 
-
+/*****************************
+Inserts an element in the    *
+top of the stack             *
+*****************************/
 void push (node *head, int c) {
 	node new = malloc (sizeof(struct stacknode));
 	new->next = *head;
@@ -22,6 +31,10 @@ void push (node *head, int c) {
 	*head = new;
 }
 
+/****************************
+Removes the top element of  *
+the stack                   *
+****************************/
 int pop (node *head) {
 	if (isEmpty(head)) {
 		fprintf(stderr, "Pop num stack vazio\n");
@@ -34,6 +47,9 @@ int pop (node *head) {
 	return value;
 }
 
+/**************************
+Prints the stack          *
+**************************/
 void printStack(node *head) {
 	node aux = *head;
 	while (aux != NULL) {
