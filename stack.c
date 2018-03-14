@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct stacknode {
-	int content;
-	struct stacknode *next;
-
-}*node;
+#include "stack.h"
 
 
 
@@ -48,22 +43,4 @@ void printStack(node head) {
 	}
 }
 
-int main () {
-	node head = init (3);
-	push (&head, 4);
-	push (&head, 5);
-	printStack(head);
-	//print(head);
-	printf("POP %d\n",pop(&head));
-	printStack(head);
-	//printf("%d",pop(head));
-	pop (&head);
-	pop (&head);
-
-
-
-
-
-	return 0;
-}
-
+int main() {return 0;}
