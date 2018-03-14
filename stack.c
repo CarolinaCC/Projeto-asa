@@ -16,7 +16,9 @@ node init (int c) {
 	return head;
 }
 
-
+int isEmpty (node *head) {
+	return (*head == NULL) ? 1 : 0;
+}
 
 
 void push (node *head, int c) {
@@ -27,7 +29,7 @@ void push (node *head, int c) {
 }
 
 int pop (node *head) {
-	if (*head == NULL) {
+	if (isEmpty(head)) {
 		fprintf(stderr, "Pop num stack vazio\n");
 		exit (-1);
 	}
