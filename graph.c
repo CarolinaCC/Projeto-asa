@@ -70,7 +70,8 @@ void scc_Tarjan (graph g) {
 
 int main () {
 	int n;
-	scanf("%d\n", &n);
+	scanf("%d", &n);
+	printf("li o primeiro caracter: %d\n", n );
 
 	if (n < 2)
 		exit(-1);
@@ -78,15 +79,19 @@ int main () {
 	graph* g = initGraph (n);
 	int m;
 
-	scanf("%d\n", &m);
+	scanf("%d", &m);
 	if (m < 1)
 		exit(-1);
 
 
+	printf("li o segundo caracter: %d\n", m );
+
 	int u, v;
 	for (int i = 0; i < m; i++) {
-		scanf ("%d %d\n", &u, &v);
+		scanf ("%d %d", &u, &v);
 		//FIXME
+		printf("arco de %d para %d\n", u, v );
+
 		addArc2Graph(g, u -1, v -1);
 	}
 
