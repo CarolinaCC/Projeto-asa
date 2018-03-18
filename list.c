@@ -30,16 +30,16 @@ vertice* getVerticeFromList(link head) {
 	return head->v;
 }
 
-int getLowFromListNode (struct listNode n) {
-	return getLow(*n.v);
+int getLowFromListNode (struct listNode* n) {
+	return getLow(n->v);
 }
 
-int getDFromListNode (struct listNode n) {
-	return getD (*n.v);
+int getDFromListNode (struct listNode* n) {
+	return getD (n->v);
 }
 
-int getIdFromListNode (struct listNode n) {
-	return getId (*n.v);
+int getIdFromListNode (struct listNode* n) {
+	return getId (n->v);
 }
 
 void setLowFromListNode (struct listNode* n, int low) {
