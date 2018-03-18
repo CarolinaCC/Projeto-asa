@@ -40,6 +40,7 @@ struct vertex* pop (linkStacknode *head) {
 	}
 	linkStacknode aux = *head;
 	struct vertex* value = aux->content;
+	value->inStack = FALSE;
 	*head = (*head)->next;
 	free(aux);
 	return value;

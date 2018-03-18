@@ -69,18 +69,18 @@ void tarjan_Visit (graph g, int idVertice) {
 
 	if (getD(*v) == getLow(*v)) {
 		//printf("id desejado: %d\n", getId(*v));
-		vertice* u;
+		vertice* w;
 		int* indice_menor = malloc (sizeof(int));
 		*indice_menor = INFINITY;
 		number_of_components++;
 		do {
-			u = pop(&stack);
+			w = pop(&stack);
 			//printf("id obtido: %d\n", getId(*u));
 
-			u->idMinSCC = indice_menor;
-			if (*indice_menor == INFINITY || getId(*u) < *indice_menor)
-				*indice_menor = getId(*u);
-		} while (getId(*u) != getId(*v) );
+			w->idMinSCC = indice_menor;
+			if (*indice_menor == INFINITY || getId(*w) < *indice_menor)
+				*indice_menor = getId(*w);
+		} while (getId(*w) != getId(*v) );
 	}
 }
 
@@ -115,7 +115,7 @@ int main () {
 	for (int i = 0; i < m; i++) {
 		scanf ("%d %d", &u, &v);
 		//FIXME
-		printf("arco de %d para %d\n", u  , v  );
+		//printf("arco de %d para %d\n", u  , v  );
 
 		addArc2Graph(g, u -1 , v -1);
 	}
