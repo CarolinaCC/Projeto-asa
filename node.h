@@ -10,6 +10,8 @@ typedef struct vertex{
 }vertice;
 
 vertice createVertex(int id);
+void addArc (vertice* origem,vertice* destino);
+
 
 
 

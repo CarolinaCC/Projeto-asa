@@ -11,10 +11,6 @@ vertice createVertex(int id) {
 
 void addArc (vertice* origem,vertice* destino) {
 	origem->arcos_lista = add2list(origem->arcos_lista, destino);
-	
-
-
-
 }
 
 
