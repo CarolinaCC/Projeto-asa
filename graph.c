@@ -8,6 +8,8 @@
 int visited;
 linkStacknode stack;
 
+int number_of_components;
+
 
 graph* initGraph (int size) {
 	graph* newGraph = malloc (sizeof (graph));
@@ -46,8 +48,14 @@ void tarjan_Visit (graph g, int idVertice) {
 
 	if (getD(*v) == getLow(*v)) {
 		vertice* u;
+		int* indice_menor = malloc (sizeof(int));
+		*indice_menor = INFINITY;
+		number_of_components++;
 		do {
 			u = pop(&stack);
+			u->idMinSCC = indice_menor;
+			if (*indice_menor == INFINITY || getId(*u) < *indice_menor)
+				*indice_menor = getId(*u);
 		} while (getId(*u) != getId(*v) );
 	}
 }
@@ -60,5 +68,31 @@ void scc_Tarjan (graph g) {
 	}
 }
 
+int main () {
+	int n;
+	scanf("%d\n", &n);
 
+	if (n < 2)
+		exit(-1);
+
+	graph* g = initGraph (n);
+	int m;
+
+	scanf("%d\n", &m);
+	if (m < 1)
+		exit(-1);
+
+
+	int u, v;
+	for (int i = 0; i < m; i++) {
+		scanf ("%d %d\n", &u, &v);
+		//FIXME
+		addArc2Graph(g, u -1, v -1);
+	}
+
+	scc_Tarjan(*g);
+	printf("%d\n", number_of_components);
+
+
+}
 

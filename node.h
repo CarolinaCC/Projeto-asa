@@ -15,6 +15,8 @@ typedef struct vertex{
 	int id;
 	char inStack;
 	int d, low;
+	// id do valor do vertice minimo da CFL a que este node pertence
+	int* idMinSCC;
 	struct listNode* arcos_lista;
 }vertice;
 

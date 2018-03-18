@@ -7,6 +7,7 @@ vertice createVertex(int id) {
 	new.inStack = FALSE;
 	new.d = INFINITY;
 	new.low = INFINITY;
+	new.idMinSCC = NULL;
 	new.arcos_lista = initiate_list();
 	return new;
 }
