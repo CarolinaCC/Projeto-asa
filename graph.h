@@ -2,7 +2,6 @@
 #define GRAPH_H
 #include "node.h"
 
-#define INFINITY -1
 
 typedef struct graph {
 	struct vertex* vertices;

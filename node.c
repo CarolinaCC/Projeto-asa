@@ -4,7 +4,9 @@
 vertice createVertex(int id) {
 	vertice new;
 	new.id = id;
-	new.inStack = 0;
+	new.inStack = FALSE;
+	new.d = INFINITY;
+	new.low = INFINITY;
 	new.arcos_lista = initiate_list();
 	return new;
 }

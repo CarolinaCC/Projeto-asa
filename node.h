@@ -2,6 +2,14 @@
 #define NODE_H
 #include "list.h"
 
+#define TRUE 1
+#define FALSE 0
+//FIXME
+#define INFINITY -1
+
+#define MAX(a,b) ((a) > (b) ? a : b)
+#define MIN(a,b) ((a) < (b) ? a : b)
+
 typedef struct vertex{
 
 	int id;
@@ -19,6 +27,8 @@ int getId (struct vertex v);
 
 void setLow (struct vertex* v, int low);
 void setD (struct vertex* v, int d);
+
+
 
 
 

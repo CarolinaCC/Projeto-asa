@@ -25,12 +25,13 @@ void push (linkStacknode *head, struct vertex* v) {
 	linkStacknode new = malloc (sizeof(struct stacknode));
 	new->next = *head;
 	new->content = v;
+	v->inStack = TRUE;
 	*head = new;
 }
 
 /****************************
 Removes the top element of  *
-the stack                   *
+the stack
 ****************************/
 struct vertex* pop (linkStacknode *head) {
 	if (isEmpty(head)) {
