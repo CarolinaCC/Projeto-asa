@@ -3,6 +3,9 @@
 #include "graph.h"
 #include "node.h"
 
+// ele poem igual a zero por definicao
+int visited;
+
 
 graph* initGraph (int size) {
 	graph* newGraph = malloc (sizeof (graph));
@@ -17,4 +20,14 @@ graph* initGraph (int size) {
 void addArc2Graph (graph* g, int verticeOrigem, int verticeChegada) {
 	addArc(&(g->vertices[verticeOrigem]), &(g->vertices[verticeChegada]));
 }
+
+void Tarjan_Visit (graph g, int idVertice) {
+	g.vertices[idVertice]
+
+
+	visited ++;
+
+}
+
+
 

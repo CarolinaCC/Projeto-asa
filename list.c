@@ -24,9 +24,26 @@ void printList(link head) {
 		//fazer printNode
 		aux = aux->next;
 	}
-
-
-
 }
 
 
+
+int getLowFromListNode (struct listNode n) {
+	return getLow(*n.v);
+}
+
+int getDFromListNode (struct listNode n) {
+	return getD (*n.v);
+}
+
+int getIdFromListNode (struct listNode n) {
+	return getId (*n.v);
+}
+
+void setLowFromListNode (struct listNode* n, int low) {
+	setLow(n->v, low);
+}
+
+void setDFromListNode (struct listNode* n, int d) {
+	setD(n->v, d);
+}

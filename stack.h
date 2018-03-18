@@ -1,20 +1,21 @@
 #ifndef STACK_H
 #define STACK_H
+#include "node.h"
 
 typedef struct stacknode {
-	int content;
+	struct vertex* content;
 	struct stacknode *next;
 
-}*node;
+}*linkStacknode;
 
-node init(int c);
+linkStacknode init();
 
-int isEmpty(node *head);
+int isEmpty(linkStacknode *head);
 
-void push(node *head, int c);
+void push(linkStacknode *head, struct vertex* v);
 
-int pop(node *head);
+struct vertex* pop(linkStacknode *head);
 
-void printStack(node *head);
+void printStack(linkStacknode *head);
 
 #endif

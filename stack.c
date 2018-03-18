@@ -4,11 +4,8 @@
 
 
 
-node init (int c) {
-	node head = malloc (sizeof(struct stacknode));
-	head->content = c;
-	head->next = NULL;
-	return head;
+linkStacknode init () {
+	return NULL;
 }
 
 /****************************
@@ -16,7 +13,7 @@ Returns true if stack has   *
 no elements on it and false *
 otherwise                   *
 ****************************/
-int isEmpty (node *head) {
+int isEmpty (linkStacknode *head) {
 	return (*head == NULL) ? 1 : 0;
 }
 
@@ -24,10 +21,10 @@ int isEmpty (node *head) {
 Inserts an element in the    *
 top of the stack             *
 *****************************/
-void push (node *head, int c) {
-	node new = malloc (sizeof(struct stacknode));
+void push (linkStacknode *head, struct vertex* v) {
+	linkStacknode new = malloc (sizeof(struct stacknode));
 	new->next = *head;
-	new->content = c;
+	new->content = v;
 	*head = new;
 }
 
@@ -35,13 +32,13 @@ void push (node *head, int c) {
 Removes the top element of  *
 the stack                   *
 ****************************/
-int pop (node *head) {
+struct vertex* pop (linkStacknode *head) {
 	if (isEmpty(head)) {
 		fprintf(stderr, "Pop num stack vazio\n");
 		exit (EXIT_FAILURE);
 	}
-	node aux = *head;
-	int value = aux->content;
+	linkStacknode aux = *head;
+	struct vertex* value = aux->content;
 	*head = (*head)->next;
 	free(aux);
 	return value;
@@ -50,25 +47,12 @@ int pop (node *head) {
 /**************************
 Prints the stack          *
 **************************/
-void printStack(node *head) {
-	node aux = *head;
+void printStack(linkStacknode *head) {
+	linkStacknode aux = *head;
 	while (aux != NULL) {
-		printf("%d\n", aux->content);
+		printf("%d\n", aux->content->id);
 		aux = aux->next;
 	}
 	printf("\n");
 }
 
-int main(){
-	node head = init(5);
-	push(&head, 3);
-	printStack(&head);
-	push(&head, 9);
-	printStack(&head);
-	pop(&head);
-	printStack(&head);
-	printf("pop return:%d\n", pop(&head));
-	printStack(&head);
-	pop(&head);
-	pop(&head);
-}
