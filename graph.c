@@ -32,27 +32,35 @@ void addArc2Graph (graph* g, int verticeOrigem, int verticeChegada) {
 void tarjan_Visit (graph g, int idVertice) {
 	// melhorar ahahahahahhahahahahahha
 	vertice* v = getVertice(g, idVertice);
-	setLow (v, visited);
-	setD (v, visited);
+	setLow (v, visited +1);
+	setD (v, visited + 1);
 	visited ++;
 	push(&stack, v);
 
 	for (link aux = v->arcos_lista; aux != NULL; aux = aux->next) {
+		//printf("aux: %d\n", aux->v->id);
 		vertice* u = aux->v;
-		if (getD(*u) == INFINITY || u->inStack) {
-			if (getD(*u) == INFINITY)
+		//if (getD(*u) == INFINITY || u->inStack) {
+		if(getD(*u) == INFINITY) {
 				tarjan_Visit(g, u->id);
-			setLow(v, MIN(getLow(*v),getLow(*u)));
+				setLow(v, MIN(getLow(*v), getD(*u)));
+
 		}
-	}
+		else if (u->inStack == TRUE)
+			setLow(v, MIN(getLow(*v),getD(*u)));
+		}
+
 
 	if (getD(*v) == getLow(*v)) {
+		//printf("id desejado: %d\n", getId(*v));
 		vertice* u;
 		int* indice_menor = malloc (sizeof(int));
 		*indice_menor = INFINITY;
 		number_of_components++;
 		do {
 			u = pop(&stack);
+			//printf("id obtido: %d\n", getId(*u));
+
 			u->idMinSCC = indice_menor;
 			if (*indice_menor == INFINITY || getId(*u) < *indice_menor)
 				*indice_menor = getId(*u);
@@ -63,6 +71,7 @@ void tarjan_Visit (graph g, int idVertice) {
 void scc_Tarjan (graph g) {
 
 	for (int i = 0 ; i < g.numberOfVertexes; i++) {
+		//printf("%d\n", getD(*getVertice(g, i)) );
 		if (getD(*getVertice(g, i)) == INFINITY)
 			tarjan_Visit(g, i);
 	}
@@ -71,7 +80,7 @@ void scc_Tarjan (graph g) {
 int main () {
 	int n;
 	scanf("%d", &n);
-	printf("li o primeiro caracter: %d\n", n );
+	//printf("li o primeiro caracter: %d\n", n );
 
 	if (n < 2)
 		exit(-1);
@@ -84,13 +93,13 @@ int main () {
 		exit(-1);
 
 
-	printf("li o segundo caracter: %d\n", m );
+	//printf("li o segundo caracter: %d\n", m );
 
 	int u, v;
 	for (int i = 0; i < m; i++) {
 		scanf ("%d %d", &u, &v);
 		//FIXME
-		printf("arco de %d para %d\n", u, v );
+		//printf("arco de %d para %d\n", u, v );
 
 		addArc2Graph(g, u -1, v -1);
 	}
