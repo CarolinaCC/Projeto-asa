@@ -9,5 +9,12 @@ vertice createVertex(int id) {
 	return new;
 }
 
+void addArc (vertice* origem,vertice* destino) {
+	origem->arcos_lista = add2list(origem->arcos_lista, destino);
+	
+
+
+
+}
 
 
