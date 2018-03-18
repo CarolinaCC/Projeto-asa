@@ -7,6 +7,8 @@ typedef struct listNode {
 	struct listNode *next;
 }*link;
 
+struct vertex* getVerticeFromList(link head);
+
 
 link initiate_list();
 

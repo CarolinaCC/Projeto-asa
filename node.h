@@ -22,13 +22,21 @@ typedef struct vertex{
 
 vertice createVertex(int id);
 void addArc (vertice* origem,vertice* destino);
+struct listNode* getArcs(vertice* v);
 
-int getLow (struct vertex v);
-int getD (struct vertex v);
-int getId (struct vertex v);
+void printVertice(vertice* v);
+
+
+int getLow (struct vertex* v);
+int getD (struct vertex* v);
+int getId (struct vertex* v);
+int getidMinSCC(struct vertex* v);
+
 
 void setLow (struct vertex* v, int low);
 void setD (struct vertex* v, int d);
+void setidMinSCC(struct vertex* v, int* minPointer);
+
 
 
 

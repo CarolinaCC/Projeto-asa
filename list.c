@@ -21,12 +21,14 @@ link add2list(link head, struct vertex *e) {
 void printList(link head) {
 	link aux = head;
 	while (aux != NULL){
-		//fazer printNode
+		printVertice(aux->v);
 		aux = aux->next;
 	}
 }
 
-
+vertice* getVerticeFromList(link head) {
+	return head->v;
+}
 
 int getLowFromListNode (struct listNode n) {
 	return getLow(*n.v);

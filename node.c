@@ -16,16 +16,25 @@ void addArc (vertice* origem,vertice* destino) {
 	origem->arcos_lista = add2list(origem->arcos_lista, destino);
 }
 
-int getLow (struct vertex v) {
-	return v.low;
+link getArcs(vertice* v){
+	return v->arcos_lista;
 }
 
-int getD (struct vertex v) {
-	return v.d;
+void printVertice(vertice* v) {
+	printf("%d\n", v->id );
 }
 
-int getId (struct vertex v) {
-	return v.id;
+
+int getLow (struct vertex* v) {
+	return v->low;
+}
+
+int getD (struct vertex* v) {
+	return v->d;
+}
+
+int getId (struct vertex* v) {
+	return v->id;
 }
 
 void setLow (struct vertex* v, int low) {
@@ -34,6 +43,14 @@ void setLow (struct vertex* v, int low) {
 
 void setD (struct vertex* v, int d) {
 	v->d = d;
+}
+
+void setidMinSCC(struct vertex* v, int* minPointer) {
+	v->idMinSCC = minPointer;
+}
+
+int getidMinSCC(struct vertex* v) {
+	return *v->idMinSCC;
 }
 
 
