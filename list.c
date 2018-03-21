@@ -16,6 +16,27 @@ link add2list(link head, struct vertex *e) {
 	return newNode;
 }
 
+link addSorted2list (link head, struct vertex *e) {
+	
+	link aux = head;
+
+	while (aux->next != NULL && *(aux->next->idMinSCC) >= *(e->idMinSCC)) {
+		aux = aux->next;
+	}	
+	link newNode = malloc (sizeof (link));
+	newNode->v = e;
+
+	if (aux == head) {
+		newNode->next = aux;
+		return newNode;
+	}
+
+	newNode->next = aux->next;
+	aux->next = newNode;
+	return head;
+}
+
+
 
 
 void printList(link head) {

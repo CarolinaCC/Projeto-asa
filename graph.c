@@ -69,7 +69,7 @@ void tarjan_Visit (graph *g, int idVertice) {
 		number_of_components++;
 		do {
 			w = pop(&stack);
-
+			setNumberSCC(w, number_of_components);
 			setidMinSCC(w, indice_menor);
 
 			if (*indice_menor == INFINITY || getId(w) < *indice_menor)

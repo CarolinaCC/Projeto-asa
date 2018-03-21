@@ -4,6 +4,7 @@
 vertice createVertex(int id) {
 	vertice new;
 	new.id = id;
+	new.numberSCC = INFINITY;
 	new.inStack = FALSE;
 	new.d = INFINITY;
 	new.low = INFINITY;
@@ -53,4 +54,8 @@ int getidMinSCC(struct vertex* v) {
 	return *v->idMinSCC;
 }
 
+void setNumberSCC (struct vertex* v, int number) {
+	v->numberSCC = number;
+
+}
 
