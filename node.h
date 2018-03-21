@@ -31,6 +31,7 @@ int getLow (struct vertex* v);
 int getD (struct vertex* v);
 int getId (struct vertex* v);
 int getidMinSCC(struct vertex* v);
+void addOrderedArc(vertice* origem, vertice* destino);
 
 
 void setLow (struct vertex* v, int low);

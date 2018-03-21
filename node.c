@@ -16,6 +16,9 @@ vertice createVertex(int id) {
 void addArc (vertice* origem,vertice* destino) {
 	origem->arcos_lista = add2list(origem->arcos_lista, destino);
 }
+void addOrderedArc(vertice* origem, vertice* destino) {
+	origem->arcos_lista = addSorted2list(origem->arcos_lista, destino);
+}
 
 link getArcs(vertice* v){
 	return v->arcos_lista;

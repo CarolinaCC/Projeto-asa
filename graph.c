@@ -26,22 +26,22 @@ void addArc2Graph (graph* g, int verticeOrigem, int verticeChegada) {
 	addArc(getVertice(g, verticeOrigem), getVertice(g, verticeChegada));
 }
 
-/*
+
 void printGraph(graph* f) {
-	printf("Numero de vertices %d\n", f->numberOfVertexes);
+	//printf("Numero de vertices %d\n", f->numberOfVertexes);
 	for(int i = 0; i < f->numberOfVertexes; i++) {
-		printf("Vertice %d:\n", f->vertices[i].id +1);
+		//printf("Vertice %d:\n", f->vertices[i].id +1);
 		vertice v = f->vertices[i];
 		struct listNode* l = v.arcos_lista;
 
 		while(l != NULL){
-			printf("Arco de %d para %d\n", f->vertices[i].id +1, l->v->id +1);
+			printf(" %d  %d\n", *f->vertices[i].idMinSCC, *l->v->idMinSCC);
 			l = l->next;
 		}
 	}
 
 }
-*/
+
 
 void tarjan_Visit (graph *g, int idVertice) {
 	// melhorar ahahahahahhahahahahahha
@@ -69,7 +69,8 @@ void tarjan_Visit (graph *g, int idVertice) {
 		number_of_components++;
 		do {
 			w = pop(&stack);
-			setNumberSCC(w, number_of_components);
+			//Se der seg fault
+			setNumberSCC(w, number_of_components - 1);
 			setidMinSCC(w, indice_menor);
 
 			if (*indice_menor == INFINITY || getId(w) < *indice_menor)
@@ -84,6 +85,42 @@ void scc_Tarjan (graph *g) {
 		if (getD(getVertice(g, i)) == INFINITY)
 			tarjan_Visit(g, i);
 	}
+}
+
+void addArcOrdered2Graph(graph* g, int verticeOrigem, int verticeChegada){
+	addOrderedArc(getVertice(g, verticeOrigem), getVertice(g, verticeChegada));
+}
+
+void findConnections (graph* g) {
+
+	graph* newGraph = initGraph(number_of_components); //FIXME
+
+	for (int i = 0; i < g->numberOfVertexes; i++) {
+			vertice* v = getVertice(g, i);
+			if ((getVertice(newGraph, v->numberSCC)->idMinSCC) == NULL){
+				setidMinSCC(getVertice(newGraph, v->numberSCC), v->idMinSCC);
+
+			}
+
+		}
+
+		for (int i = 0; i < g->numberOfVertexes; i++){
+			vertice* v = getVertice(g, i);
+
+
+			for (link aux = getArcs(v); aux != NULL; aux = aux->next) {
+
+				if(v->idMinSCC != aux->v->idMinSCC){
+					addArcOrdered2Graph(newGraph,v->numberSCC, aux->v->numberSCC);
+					//printf("Cheguei aqui! %d %d\n", v->numberSCC, aux->v->numberSCC);
+
+				}
+
+
+
+			}
+	}
+	printGraph(newGraph);
 }
 
 
@@ -114,7 +151,12 @@ int main () {
 	visited = 1;
 
 	scc_Tarjan(g);
+
 	printf("%d\n", number_of_components);
+		printf("Cheguei aqui!");
+
+
+	findConnections(g);
 
 
 }

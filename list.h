@@ -20,6 +20,8 @@ int getIdFromListNode (struct listNode* n);
 
 void setLowFromListNode (struct listNode* n, int low);
 void setDFromListNode (struct listNode* n, int d);
+link addSorted2list (link head, struct vertex *e);
+
 
 
 
