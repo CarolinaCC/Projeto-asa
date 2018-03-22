@@ -2,6 +2,9 @@
 #define LIST_H
 #include "node.h"
 
+
+extern int networks;
+
 typedef struct listNode {
 	struct vertex* v;
 	struct listNode *next;

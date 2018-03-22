@@ -18,41 +18,80 @@ link add2list(link head, struct vertex *e) {
 
 link addSorted2list (link head, struct vertex *e) {
 
+
 	if (head == NULL) {
 		link newNode = malloc (sizeof (link));
 		newNode->v = e;
 		newNode->next = NULL;
+		networks++;
 		return newNode;
 	}
 
-	link aux = head;
+	if(*head->v->idMinSCC == *e->idMinSCC) return head;
 
-	while (aux->next != NULL && *(aux->next->v->idMinSCC) >= *(e->idMinSCC)) {
-		aux = aux->next;
+
+	link newNode = malloc(sizeof (link));
+	newNode->v = e;
+	newNode->next = NULL;
+
+	if (*e->idMinSCC < *head->v->idMinSCC){
+		newNode->next = head;
+		networks++;
+		return newNode;
 	}
 
+	link temp ,prev;
+	temp = head->next;
+	prev = head;
+	while(temp != NULL && *temp->v->idMinSCC < *e->idMinSCC) {
+	    prev = temp;
+	    temp = temp->next;
+	}
+
+	if(prev != NULL && temp != NULL)
+		if(*temp->v->idMinSCC == *e->idMinSCC || *prev->v->idMinSCC == *e->idMinSCC)
+			return head;
+	newNode->next = temp;
+	prev->next = newNode;
+	networks++;
+
+	return head;
+
+
+
+	/*
+	while (aux->next != NULL && (*(aux->next->v->idMinSCC) < *(e->idMinSCC))) {
+		aux = aux->next;
+
+	}
+
+
+	// ultimo
 	if(aux->next == NULL) {
 		link newNode = malloc (sizeof (link));
 		newNode->v = e;
+		newNode->next = NULL;
 		aux->next = newNode;
 		return head;
 
 	}
-
-	if (aux->next->v->idMinSCC == e->idMinSCC) {
+	// SAO IGUAIS
+	if (aux->next->v->idMinSCC == e->idMinSCC || aux->v->idMinSCC == e->idMinSCC) {
 		return head;
 	}
 
 	link newNode = malloc (sizeof (link));
 	newNode->v = e;
+	// substituit head
 	if (aux == head) {
 		newNode->next = aux;
 		return newNode;
 	}
 
+
 	newNode->next = aux->next;
 	aux->next = newNode;
-	return head;
+	return head;*/
 }
 
 
